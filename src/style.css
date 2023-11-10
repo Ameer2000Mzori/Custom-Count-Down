@@ -5,6 +5,7 @@ body {
   margin: 0;
   overflow-y: hidden;
   font-family: "Roboto", sans-serif;
+  background-color: rgba(245, 245, 220, 0.767);
 }
 
 .video-bg {
