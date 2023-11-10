@@ -1,28 +1,29 @@
-// getting our elements
-const counterWrapper = document.getElementsByClassName("counter-wrapper")[0];
-const inputText = document.getElementsByClassName("input-text")[0];
-const inputDate = document.getElementsByClassName("input-date")[0];
-const submitBtn = document.getElementsByClassName("submit-date")[0];
-const formEl = document.getElementsByClassName("form")[0];
-const header = document.getElementsByClassName("header")[0];
-const header2 = document.getElementsByClassName("header-2")[0];
+// Getting our elements
+const counterWrapper = document.querySelector(".counter-wrapper");
+const inputText = document.querySelector(".input-text");
+const inputDate = document.querySelector(".input-date");
+const submitBtn = document.querySelector(".submit-date");
+const formEl = document.querySelector(".form");
+const header = document.querySelector(".header");
+const header2 = document.querySelector(".header-2");
 
-// elements after submit date
-const counterOnWrapper = document.getElementsByClassName("counter-on")[0];
-const contentTitle = document.getElementsByClassName("name-count")[0];
-const contentDays = document.getElementsByClassName("number-days")[0];
-const contentHours = document.getElementsByClassName("number-hours")[0];
-const contentMin = document.getElementsByClassName("number-min")[0];
-const contentSec = document.getElementsByClassName("number-sec")[0];
-const restBtn = document.getElementsByClassName("rest-btn")[0];
+// Elements after submit date
+const counterOnWrapper = document.querySelector(".counter-on");
+const contentTitle = document.querySelector(".name-count");
+const contentDays = document.querySelector(".number-days");
+const contentHours = document.querySelector(".number-hours");
+const contentMin = document.querySelector(".number-min");
+const contentSec = document.querySelector(".number-sec");
+const restBtn = document.querySelector(".rest-btn");
 
 const errorText = document.createElement("p");
 const newDate = new Date().toISOString().split("T")[0];
 
 let countDowntitle = "";
 let countDownDate = "";
-let countDownValue = Date;
+let countDownValue = 0;
 let countDownActive;
+let savedCount;
 
 const second = 1000;
 const min = second * 60;
@@ -35,33 +36,39 @@ function updateDom() {
   countDownActive = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownValue - now;
-    console.log(distance);
 
     const days = Math.floor(distance / day);
     const hours = Math.floor((distance % day) / hour);
     const mints = Math.floor((distance % hour) / min);
     const seconds = Math.floor((distance % min) / second);
-    console.log(days, hours, mints, seconds);
 
-    //put values to our UI
-    contentTitle.textContent = `${inputText.value}`;
-    contentDays.textContent = `${days}`;
-    contentHours.textContent = `${hours}`;
-    contentMin.textContent = `${mints}`;
-    contentSec.textContent = `${seconds}`;
-    // hide
+    // Put values to our UI
+    contentTitle.textContent = countDowntitle;
+    contentDays.textContent = days;
+    contentHours.textContent = hours;
+    contentMin.textContent = mints;
+    contentSec.textContent = seconds;
+
+    // Hide
     header.classList.add("active");
-
     header2.classList.add("active");
   }, second);
 }
 
 function updateCountDown(e) {
   e.preventDefault();
-  countDowntitle = e.srcElement[0].value;
-  countDownDate = e.srcElement[1].value;
+  countDowntitle = inputText.value;
+  countDownDate = inputDate.value;
   console.log(countDowntitle, countDownDate);
-  // get number version of current date, updateDom
+
+  // Get number version of the current date, updateDom
+  savedCount = {
+    title: countDowntitle,
+    date: countDownDate,
+  };
+  console.log(savedCount);
+  localStorage.setItem("savedCount", JSON.stringify(savedCount));
+
   if (countDownDate === "") {
     console.log("error");
   } else {
@@ -71,14 +78,32 @@ function updateCountDown(e) {
   }
 }
 
-//rest all values
+// Reset all values
 function reset() {
   header2.classList.remove("active");
   header.classList.remove("active");
   clearInterval(countDownActive);
-  contentTitle = "";
+  countDowntitle = "";
   countDownDate = "";
+  localStorage.removeItem("savedCount");
+}
+
+function restoreStoredCountDown() {
+  if (localStorage.getItem("savedCount")) {
+    header.classList.add("active");
+    header2.classList.add("active");
+    savedCount = JSON.parse(localStorage.getItem("savedCount"));
+    countDowntitle = savedCount.title;
+    countDownDate = savedCount.date;
+
+    countDownValue = new Date(countDownDate).getTime();
+    updateDom();
+  }
 }
 
 formEl.addEventListener("submit", updateCountDown);
 restBtn.addEventListener("click", reset);
+
+document.addEventListener("DOMContentLoaded", function () {
+  restoreStoredCountDown();
+});
