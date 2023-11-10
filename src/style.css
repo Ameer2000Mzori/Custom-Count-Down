@@ -267,4 +267,7 @@ body {
   .rest-btn {
     width: 240px;
   }
+  .time-wrap {
+    flex-direction: column;
+  }
 }
