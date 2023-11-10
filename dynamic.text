@@ -1,0 +1,23 @@
+//after user input : 
+      <div class="countdown-wrapper">
+        <h1 class="name-count">Car wash</h1>
+        <div class="time-wrap">
+          <div class="days-wrap">
+            <div class="number-days">1</div>
+            <div class="title-day">Days</div>
+          </div>
+          <div class="hours-wrap">
+            <div class="number-hours">1</div>
+            <div class="title-hours">hours</div>
+          </div>
+          <div class="min-wrap">
+            <div class="number-min">1</div>
+            <div class="title-min">min</div>
+          </div>
+          <div class="sec-wrap">
+            <div class="number-sec">1</div>
+            <div class="title-sec">sec</div>
+          </div>
+          <button class='submit-btn'></button> 
+        </div>
+      </div>
