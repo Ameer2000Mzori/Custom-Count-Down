@@ -28,6 +28,10 @@ body {
   align-items: center;
 }
 
+.header.active {
+  display: none;
+}
+
 .counter-wrapper {
   display: flex;
   height: 400px;
@@ -150,9 +154,14 @@ body {
   background-color: rgb(109, 108, 108);
 }
 
+.errorText {
+  color: rgb(255, 0, 0);
+  font-size: 15px;
+}
+
 @media screen and (max-width: 769px) {
   .counter-wrapper {
-    height: 400px;
+    height: clamp(400px, 100%, 600px);
     width: 300px;
   }
 
@@ -175,6 +184,85 @@ body {
   }
 
   .submit-date {
+    width: 240px;
+  }
+}
+
+/* when time set  */
+
+.header-2 {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.header-2.active {
+  display: flex;
+}
+
+.counter-on {
+  display: flex;
+  height: 400px;
+  width: 600px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+}
+
+.name-count {
+  font-weight: 600;
+  font-size: 25px;
+  padding: 0;
+  margin: 0;
+}
+
+.time-wrap {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 25px;
+  font-size: 20px;
+}
+
+.rest-btn {
+  border-radius: 15px;
+  border-style: solid;
+  border-color: rgba(128, 128, 128, 0.61);
+  border-width: 3px;
+  padding: 5px;
+  height: 45px;
+  width: 360px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rest-btn:hover {
+  border-color: white;
+  color: rgba(255, 255, 255, 0.918);
+  background-color: rgb(105, 103, 103);
+}
+
+.rest-btn:active {
+  background-color: rgb(109, 108, 108);
+}
+
+@media screen and (max-width: 769px) {
+  .counter-on {
+    height: clamp(400px, 100%, 600px);
+    width: 300px;
+  }
+
+  .rest-btn {
     width: 240px;
   }
 }

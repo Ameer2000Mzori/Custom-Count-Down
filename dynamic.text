@@ -1,5 +1,5 @@
 //after user input : 
-      <div class="countdown-wrapper">
+      <div class="counter-wrapper">
         <h1 class="name-count">Car wash</h1>
         <div class="time-wrap">
           <div class="days-wrap">
