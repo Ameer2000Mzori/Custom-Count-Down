@@ -84,8 +84,8 @@ body {
 }
 
 .input-text:hover {
-  background-color: black;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.212);
+  color: rgb(2, 2, 2);
 }
 
 .date-wrap {
@@ -116,7 +116,7 @@ body {
 
 .input-date:hover {
   background-color: rgba(0, 0, 0, 0.212);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .btn-wrap {
@@ -144,4 +144,37 @@ body {
   border-color: white;
   color: rgba(255, 255, 255, 0.918);
   background-color: black;
+}
+
+.submit-date:active {
+  background-color: rgb(109, 108, 108);
+}
+
+@media screen and (max-width: 769px) {
+  .counter-wrapper {
+    height: 400px;
+    width: 300px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 265px;
+    height: 155px;
+    margin: 0;
+  }
+
+  .input-text {
+    width: 250px;
+  }
+
+  .input-date {
+    width: 250px;
+  }
+
+  .submit-date {
+    width: 240px;
+  }
 }
